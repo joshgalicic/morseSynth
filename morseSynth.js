@@ -165,7 +165,7 @@ function morseSynth() {
 		// nothing to do?
 		if (message == '') {
 			for (var i=0;i<self.messageCallbacks.length;i++)
-				self.messageCallbacks[i]();
+				self.messageCallbacks[i].apply(self);
 			return;
 		}
 
@@ -186,7 +186,7 @@ function morseSynth() {
 		}
 		// Send next character as plain text back to visualisation or anything:
 		for (var i=0;i<self.characterCallbacks.length;i++)
-			self.characterCallbacks[i](character);
+			self.characterCallbacks[i].apply(self, character);
 		character = self.morseCodes[character];
 
 
